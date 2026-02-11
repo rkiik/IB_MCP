@@ -98,7 +98,7 @@ async def create_or_modify_alert(
         try:
             response = await client.post(
                 f"{BASE_URL}/iserver/account/{accountId}/alert",
-                json=body.dict(exclude_none=True),
+                json=body.model_dump(exclude_none=True),
                 timeout=10
             )
             response.raise_for_status()
@@ -170,7 +170,7 @@ async def activate_deactivate_alert(body: AlertActivationRequest = Body(...)):
         try:
             response = await client.post(
                 f"{BASE_URL}/iserver/account/alert/activate",
-                json=body.dict(),
+                json=body.model_dump(),
                 timeout=10
             )
             response.raise_for_status()
